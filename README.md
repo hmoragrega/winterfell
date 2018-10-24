@@ -5,7 +5,7 @@ _Protect the Wall_
 I've chosen to implement an agnostic game engine that can be executed from different context, to comply with the exercise it is executed trough command line server/client architecture, but it could be plugged to a web server or behind a gRPC proxy server for example
 
 ## Libraries
-I've deliberately avoided using libraries to maximize the chances of having to deal with Go's most iconic types, structures and packages; in a real world scenario I would spend some time to find what is best suited for the task at hands.
+I've deliberately avoided using libraries to maximize the chances of having to deal with Go most iconic types, structures and built-in packages; in a real world scenario I would spend some time to find what is best suited for the task at hands.
 
 ## Code style
 Although there's inherent style in my code (like use NewX for constructors), I'm still flexible and as long as the team agrees on a standard I'm happy to follow it
