@@ -1,5 +1,8 @@
 # Winter Is Coming - The game
+
 _Protect the Wall_
+
+[![Build Status](https://travis-ci.org/hmoragrega/winterfell.svg?branch=master)](https://travis-ci.org/hmoragrega/winterfell)
 
 ## Background
 I've chosen to implement an agnostic game engine that can be executed from different context, to comply with the exercise it is executed trough command line server/client architecture, but it could be plugged to a web server or behind a gRPC proxy server for example
