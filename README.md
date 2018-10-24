@@ -41,7 +41,7 @@ go tool cover -html=coverage.out
 ```
 
 ## How to build  
-**Disclaimer:** The version GO used used while developing this app is `go1.11`  
+**Disclaimer:** The version of Go used to develop this app is >= go1.10  
 If you have installed GNU make you can invoke a helper command that will build it for you  
 ```
 make build
@@ -55,7 +55,7 @@ go build -o bin/cmd-client cmd/client/client.go
 ## How to run
 Start the server in a terminal and the client in another, once finished playing you can kill them with Ctrl-c
 
-You can pass an optional flag  `address` in case the default port is in use
+You can pass an optional flag `address` in case the default port is in use
 ```
 $ bin/cmd-server -address=:8122
 Listening on address :8122
