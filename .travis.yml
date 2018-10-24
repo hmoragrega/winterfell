@@ -11,5 +11,6 @@ git:
 install: true
 
 script:
-  - golangci-lint run 
-  - go test -timeout 5s -v ./cmd/server ./game
+  - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+  - make deps
+  - make tests-ci
