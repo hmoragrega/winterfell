@@ -60,9 +60,11 @@ func executePlayerCommands(conn net.Conn, g game.Engine, stop chan struct{}) {
 	stop <- struct{}{}
 }
 
-func brodcastGameMessages(conn net.Conn, g game.Engine) {
+func brodcastGameMessages(conn net.Conn, g game.Engine, stop chan struct{}) {
 	for {
 		select {
+		case <-stop:
+			return
 		case position := <-g.EnemyPosition():
 			broadcastMessage(conn, getEnemyPositionMessage(g, position))
 			break
@@ -82,9 +84,8 @@ func handleNewConnection(conn net.Conn) {
 	stop := make(chan struct{})
 
 	go executePlayerCommands(conn, g, stop)
-	go brodcastGameMessages(conn, g)
 
-	<-stop
+	brodcastGameMessages(conn, g, stop)
 
 	log.Println("Closing client connnection")
 }

@@ -9,7 +9,7 @@ tests:
 	@make tests-ci TEST_FLAGS=-v
 
 tests-ci:
-	@go test -timeout 5s ${TEST_FLAGS} ./cmd/server ./game
+	@go test -timeout 5s ${TEST_FLAGS} -race ./cmd/server ./game
 
 coverage:
 	@make tests-ci TEST_FLAGS=-coverprofile=coverage.out

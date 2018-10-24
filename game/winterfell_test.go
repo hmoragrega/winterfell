@@ -62,18 +62,12 @@ func TestShootOnlyWorkingWhenGameHasStarted(t *testing.T) {
 
 func TestPlayerWinsIfHitsTheEnemy(t *testing.T) {
 	w := NewWinterIsComingEngine()
-	wg := &sync.WaitGroup{}
 
-	// Ensure games stops after win
-	go func() {
-		wg.Add(1)
-		<-w.stop
-		wg.Done()
-	}()
+	wg := &sync.WaitGroup{}
+	wg.Add(2)
 
 	// Hit when ready it!
 	go func() {
-		wg.Add(1)
 		p := <-w.EnemyPosition()
 		hit, err := w.Shoot(p.GetX(), p.GetY())
 		if assert.Nil(t, err) && assert.True(t, hit) {
@@ -82,7 +76,6 @@ func TestPlayerWinsIfHitsTheEnemy(t *testing.T) {
 	}()
 
 	go func() {
-		wg.Add(1)
 		if assert.Equal(t, Win, <-w.GameOver(), "We should have win the game") {
 			wg.Done()
 		}
@@ -96,9 +89,8 @@ func TestLosingAGame(t *testing.T) {
 	// Let's make the game faster
 	milliSecondsPerCell = 100
 
-	// This board will ensure a win in two moves for the zombie
-	b := NewBoard(3, 1)
-	expectedMoves := 2
+	// This board will ensure a win in one moves for the zombie
+	b := NewBoard(2, 1)
 
 	w := &WinterIsComing{
 		board:         b,
@@ -107,21 +99,17 @@ func TestLosingAGame(t *testing.T) {
 	}
 
 	wg := &sync.WaitGroup{}
+	wg.Add(1)
 
 	go func() {
-		wg.Add(1)
 		for {
 			<-w.EnemyPosition()
-			expectedMoves--
-			if expectedMoves == 0 {
-				wg.Done()
-			}
 		}
 	}()
 
 	go func() {
-		wg.Add(1)
-		if assert.Equal(t, Lose, <-w.GameOver(), "We should have lost the game") {
+		result := <-w.GameOver()
+		if assert.Equal(t, Lose, result, "We should have lost the game") {
 			wg.Done()
 		}
 	}()
@@ -129,5 +117,4 @@ func TestLosingAGame(t *testing.T) {
 	w.StartGame("foo")
 
 	wg.Wait()
-	w.Stop()
 }

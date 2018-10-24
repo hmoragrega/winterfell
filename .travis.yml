@@ -1,0 +1,15 @@
+language: go
+
+go:
+  - "1.10.x"
+  - "1.11.x"
+
+git:
+  depth: 1
+
+install: true
+
+script:
+  - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+  - make deps
+  - make tests-ci

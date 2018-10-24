@@ -2,15 +2,21 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
 	"net"
 	"sync"
 	"testing"
 	"time"
 
-	"github.com/hmoragrega/winterfell/mocks"
 	"github.com/golang/mock/gomock"
+	"github.com/hmoragrega/winterfell/mocks"
 	"github.com/stretchr/testify/assert"
 )
+
+func TestMain(t *testing.T) {
+	log.SetOutput(ioutil.Discard)
+}
 
 func TestBroadcastMessages(t *testing.T) {
 	server, client := net.Pipe()

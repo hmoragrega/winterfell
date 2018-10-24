@@ -1,5 +1,8 @@
 # Winter Is Coming - The game
+
 _Protect the Wall_
+
+[![Build Status](https://travis-ci.org/hmoragrega/winterfell.svg?branch=master)](https://travis-ci.org/hmoragrega/winterfell)
 
 ## Background
 I've chosen to implement an agnostic game engine that can be executed from different context, to comply with the exercise it is executed trough command line server/client architecture, but it could be plugged to a web server or behind a gRPC proxy server for example
@@ -9,6 +12,15 @@ I've deliberately avoided using libraries to maximize the chances of having to d
 
 ## Code style
 Although there's inherent style in my code (like use NewX for constructors), I'm still flexible and as long as the team agrees on a standard I'm happy to follow it
+
+## How to install
+Clone the repo into GOPATH
+```
+mkdir -p $GOPATH/src/github.com/hmoragrega
+cd $GOPATH/src/github.com/hmoragrega
+git clone git@github.com:hmoragrega/winterfell.git
+cd winterfell
+```
 
 ## How to test
 ### Install the dependencies

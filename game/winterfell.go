@@ -3,6 +3,7 @@ package game
 import (
 	"fmt"
 	"log"
+	"sync"
 )
 
 // @TODO This variabls should parameters coming from env variables, flags, etc.
@@ -20,6 +21,7 @@ type WinterIsComing struct {
 	gameover      chan Result
 	stop          chan struct{}
 	enemyPosition chan *Position
+	rm            sync.RWMutex
 }
 
 // NewWinterIsComingEngine returns the winter is coming version of the game
@@ -43,8 +45,10 @@ func (g *WinterIsComing) StartGame(playerName string) error {
 		return err
 	}
 
+	g.rm.Lock()
 	g.stop = make(chan struct{})
-	g.gameover = make(chan Result)
+	g.rm.Unlock()
+
 	g.player = player
 	g.enemy = NewZombie(enemyName, &Position{0, 0}, milliSecondsPerCell)
 
@@ -114,8 +118,11 @@ func (g *WinterIsComing) loop() {
 
 	defer func() {
 		g.enemy.StopMoving()
+
+		g.rm.Lock()
 		close(g.stop)
 		g.stop = nil
+		g.rm.Unlock()
 	}()
 
 	for {
@@ -146,6 +153,9 @@ func (g *WinterIsComing) isEnemyWinner() bool {
 }
 
 func (g *WinterIsComing) hasStarted() bool {
+	g.rm.RLock()
+	defer g.rm.RUnlock()
+
 	return g.stop != nil
 }
 
