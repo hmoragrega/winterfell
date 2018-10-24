@@ -1,0 +1,15 @@
+language: go
+
+go:
+  - "1.10.x"
+  - "1.11.x"
+  - master
+
+git:
+  depth: 1
+
+install: true
+
+script:
+  - golangci-lint run 
+  - go test -timeout 5s -v ./cmd/server ./game
