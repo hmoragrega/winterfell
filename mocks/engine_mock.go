@@ -3,8 +3,8 @@ package mocks
 import (
 	reflect "reflect"
 
-	"github.com/hmoragrega/winterfell/game"
 	gomock "github.com/golang/mock/gomock"
+	"github.com/hmoragrega/winterfell/game"
 )
 
 // MockEngine is a mock of Engine interface

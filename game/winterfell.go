@@ -6,7 +6,7 @@ import (
 	"sync"
 )
 
-// @TODO This variabls should parameters coming from env variables, flags, etc.
+// @TODO This variables should be parameters coming from env variables, flags, etc.
 var boardWidth = 10
 var boardHeight = 30
 var milliSecondsPerCell = 2000 // How many seconds before an enemy moves again
@@ -25,7 +25,7 @@ type WinterIsComing struct {
 }
 
 // NewWinterIsComingEngine returns the winter is coming version of the game
-// We could have diferent variations with diferent enemies
+// We could have different variations with different enemies
 func NewWinterIsComingEngine() *WinterIsComing {
 	return &WinterIsComing{
 		board:         NewBoard(boardWidth, boardHeight),

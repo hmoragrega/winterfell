@@ -96,7 +96,7 @@ func broadcastMessage(conn net.Conn, message string) {
 	buffer := []byte(message)
 	_, err := conn.Write(buffer)
 	if err != nil {
-		log.Printf("Error writting message to client %s\n", err)
+		log.Printf("Error writing message to client %s\n", err)
 	}
 }
 

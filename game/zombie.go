@@ -15,7 +15,7 @@ type Zombie struct {
 	previous            *Position
 	milliSecondsPerCell int
 	ticker              *time.Ticker
-	sync.Mutex
+	sync.RWMutex
 }
 
 // NewZombie creates a new zombie
@@ -55,8 +55,8 @@ func (z *Zombie) StopMoving() {
 
 // IsCurrentPosition checks if the zombie is in the given position
 func (z *Zombie) IsCurrentPosition(p *Position) bool {
-	z.Lock()
-	defer z.Unlock()
+	z.RLock()
+	defer z.RUnlock()
 
 	return p != nil && *p == *z.position
 }
@@ -95,9 +95,9 @@ func (z *Zombie) Move(b *Board) error {
 //  - move only forward (right) or up/down
 func (z *Zombie) getPosiblePositions() []*Position {
 	return []*Position{
-		&Position{z.position.x, z.position.y + cellMovement}, // Up
-		&Position{z.position.x, z.position.y - cellMovement}, // Down
-		&Position{z.position.x + cellMovement, z.position.y}, // Forward
+		{z.position.x, z.position.y + cellMovement}, // Up
+		{z.position.x, z.position.y - cellMovement}, // Down
+		{z.position.x + cellMovement, z.position.y}, // Forward
 	}
 }
 

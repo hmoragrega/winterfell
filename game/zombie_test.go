@@ -77,9 +77,9 @@ func TestGetPosiblePositions(t *testing.T) {
 	z := NewZombie("foo", p, 1)
 
 	expected := []*Position{
-		&Position{5, 6},
-		&Position{5, 4},
-		&Position{6, 5},
+		{5, 6},
+		{5, 4},
+		{6, 5},
 	}
 
 	assert.Equal(t, expected, z.getPosiblePositions())

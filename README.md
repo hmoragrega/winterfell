@@ -2,6 +2,7 @@
 
 _Protect the Wall_
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/hmoragrega/winterfell)](https://goreportcard.com/report/github.com/hmoragrega/winterfell)
 [![Build Status](https://travis-ci.org/hmoragrega/winterfell.svg?branch=master)](https://travis-ci.org/hmoragrega/winterfell)
 
 ## Background
@@ -11,7 +12,7 @@ I've chosen to implement an agnostic game engine that can be executed from diffe
 I've deliberately avoided using libraries to maximize the chances of having to deal with Go most iconic types, structures and built-in packages; in a real world scenario I would spend some time to find what is best suited for the task at hands.
 
 ## Code style
-Although there's inherent style in my code (like use NewX for constructors), I'm still flexible and as long as the team agrees on a standard I'm happy to follow it
+Although there's inherent style in my code (like use NewX for constructors or non exported errors), I'm still flexible and as long as the team agrees on a standard I'm happy to follow it
 
 ## How to install
 Clone the repo into GOPATH
@@ -28,7 +29,7 @@ The tests require a library to ease doing asserts and mocks
 Either get it globally or use the provide dependencies to install it as a local vendor  
 ```
 go get github.com/stretchr/testify/assert
-go get github.com/golang/mock
+go get github.com/golang/mock/gomock
 ```
 Using `dep` package manager  
 ```

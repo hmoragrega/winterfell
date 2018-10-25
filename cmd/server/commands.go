@@ -84,5 +84,5 @@ func getGameOverMessage(result game.Result) string {
 		return format(gameOver, "You lose!!")
 	}
 
-	return format(gameOver, "Unkown result")
+	return format(gameOver, "Unknown result")
 }
