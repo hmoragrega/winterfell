@@ -5,6 +5,10 @@ _Protect the Wall_
 [![Go Report Card](https://goreportcard.com/badge/github.com/hmoragrega/winterfell)](https://goreportcard.com/report/github.com/hmoragrega/winterfell)
 [![Build Status](https://travis-ci.org/hmoragrega/winterfell.svg?branch=master)](https://travis-ci.org/hmoragrega/winterfell)
 
+## The game
+Check the rules at:
+https://github.com/mysteriumnetwork/winter-is-coming/blob/master/quests/Talk_to_Zombies.md
+
 ## Background
 I've chosen to implement an agnostic game engine that can be executed from different context, to comply with the exercise it is executed trough command line server/client architecture, but it could be plugged to a web server or behind a gRPC proxy server for example
 
